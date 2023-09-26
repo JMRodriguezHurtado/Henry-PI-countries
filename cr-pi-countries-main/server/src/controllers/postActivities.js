@@ -1,32 +1,30 @@
 const { Activity, Country } = require("../db"); 
 
-const postActivities = async (req, res) => {
-    try {
-        const { countryName, activityName } = req.body; 
-        
-        const country = await Country.findOne({
-            where: { name: countryName },
-        });
-
-        if (!country) {
-            return res.status(404).json({ error: "Country not found" });
+    const postActivities = async (
+        nombre,
+        dificultad,
+        duracion,
+        temporada,
+        rating,
+        countries
+      ) => {
+        const existingActivity = await Activity.findOne({ where: { nombre } });
+        if (existingActivity) {
+          throw new Error("Esta actividad ya existe");
         }
-
+        if (!countries || countries.length === 0) {
+          throw new Error("Toda actividad debe tener almenos un pais");
+        }
         const newActivity = await Activity.create({
-            nombre: activityName,
-            duracion: req.body.duracion,
-            dificultad: req.body.dificultad, 
-            temporada: req.body.temporada, 
-            rating: req.body.rating,
+          nombre,
+          dificultad,
+          duracion,
+          temporada,
+          rating
         });
-
-        await newActivity.setCountry(country);
-
-        res.status(200).json(newActivity);
-    } catch (error) {
-        console.error(error);
-        res.status(400).json({ error: "Error while creating activity" });
-    }
-};
+        await newActivity.setCountries(countries);
+        return newActivity;
+      };
+    
 
 module.exports = postActivities;
