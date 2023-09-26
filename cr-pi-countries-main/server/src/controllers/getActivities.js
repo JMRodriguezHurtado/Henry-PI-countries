@@ -1,27 +1,28 @@
 const axios = require("axios");
+const Sequelize = require('sequelize');
+const {Country, Activity} = require("../db")
 
-async function getActivities(req, res) {
-  const URL = require ("../models/Activity");
+const getActivities = async (req, res) => {
+  const {name} = req.query;
 
   try {
-    
-    const {data} = await axios.get(`${URL}`);
-
-    const activity = {
-      id: data.cca3,
-      nombre: data.nombre,
-      dificultad: data.dificultad,
-      temporada: data.temporada,
-      duracion: data.duracion,
-      rating: data.rating, 
-    };
-
-    activity.nombre
-      ? res.status(200).json(activity)
-      : res.status(404).json({message: "No hay tal"});
-  } catch (error) {
-    res.status(500).json({message: error.message});
+    if(name) {
+      const activitiesFind = await Activity.findAll({
+        where: {
+          name: {
+            [Sequelize.Op.iLike]: `%${name}%`
+          }
+        }
+      });
+      if(!activitiesFind.length) return res.status(404).json({activity: "Not found"});
+      return res.status(200).json({success: countriesFind});
+    } else {
+      const activities = await Activity.findAll();
+      if(!countries){return res.status(404).json({error: "Not found"})}
+      return res.status(200).json({success: activities})
+    }
   }
-}
+  catch (error) {return res.status(500).json({error: error.message})}
+};
 
 module.exports = getActivities;

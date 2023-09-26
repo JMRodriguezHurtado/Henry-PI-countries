@@ -1,29 +1,28 @@
 const axios = require("axios");
+const Sequelize = require('sequelize');
+const {Country, Activity} = require("../db")
 
-async function getCountries(req, res) {
-  const URL = "http://localhost:5000/countries";
+const getCountries = async (req, res) => {
+  const {name} = req.query;
 
   try {
-    
-    const {data} = await axios.get(`${URL}`);
-
-    const country = {
-      id: data.cca3,
-      nombre: data.nombre,
-      image: data.image,
-      continente: data.continente,
-      capital: data.capital,
-      subregión: data.subregión?.nombre, 
-      area: data.area,
-      población: data.población,
-    };
-
-    country.nombre
-      ? res.status(200).json(country)
-      : res.status(404).json({message: "No hay tal"});
-  } catch (error) {
-    res.status(500).json({message: error.message});
+    if(name) {
+      const countriesFind = await Country.findAll({
+        where: {
+          name: {
+            [Sequelize.Op.iLike]: `%${name}%`
+          }
+        }
+      });
+      if(!countriesFind.length) return res.status(404).json({country: "Not found"});
+      return res.status(200).json({success: countriesFind});
+    } else {
+      const countries = await Country.findAll();
+      if(!countries){return res.status(404).json({error: "Not found"})}
+      return res.status(200).json({success: countries})
+    }
   }
-}
+  catch (error) {return res.status(500).json({error: error.message})}
+};
 
 module.exports = getCountries;

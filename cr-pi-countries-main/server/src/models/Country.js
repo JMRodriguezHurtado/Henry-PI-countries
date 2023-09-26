@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -17,15 +17,15 @@ module.exports = (sequelize) => {
       type: DataTypes.BLOB('long'), 
       allowNull: true,
     },
-    continente: {
-      type: DataTypes.ENUM('America', 'Europa', 'Africa', 'Asia', 'Oceania'),
+    continents: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     capital: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    subregión: {
+    subregion: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    población: {
+    population: {
       type: DataTypes.INTEGER,
       allowNull: false,
     }
