@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false
       },
       nombre: {
         type: DataTypes.STRING,
@@ -30,7 +31,7 @@ module.exports = (sequelize) => {
       },
       rating: {
         type: DataTypes.DECIMAL, 
-        allowNull: true,
+        allowNull: false,
         validate: {
           min: 1,
           max: 5,

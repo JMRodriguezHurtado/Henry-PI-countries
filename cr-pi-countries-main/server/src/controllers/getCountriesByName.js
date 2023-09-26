@@ -1,21 +1,21 @@
 const axios = require("axios");
 
-async function getCountries(req, res) {
-  const URL = "http://localhost:5000/countries";
+async function getCountriesById(req, res) {
+  const URL = "http://localhost:5000/countries/name?=";
 
   try {
-    
-    const {data} = await axios.get(`${URL}`);
+    const {name} =  req.params;
+    const {data} = await axios.get(`${URL}${name}`);
 
     const country = {
       id: data.cca3,
-      nombre: data.nombre,
+      nombre: data.name,
       image: data.image,
-      continente: data.continente,
+      continente: data.continent,
       capital: data.capital,
-      subregión: data.subregión?.nombre, 
+      subregión: data.subregion?.name, 
       area: data.area,
-      población: data.población,
+      población: data.population,
     };
 
     country.nombre
@@ -26,4 +26,4 @@ async function getCountries(req, res) {
   }
 }
 
-module.exports = getCountries;
+module.exports = getCountriesById;
