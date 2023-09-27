@@ -4,8 +4,8 @@ const getActivities = require("../handlers/getActivitieshandler")
 
 const activityRouter = Router();
 
-activityRouter.post("/postactivities", postActivity);
+activityRouter.post("/", postActivity);
 
-activityRouter.get("/allactivities", getActivities);
+activityRouter.get("/", getActivities);
 
 module.exports = activityRouter;
