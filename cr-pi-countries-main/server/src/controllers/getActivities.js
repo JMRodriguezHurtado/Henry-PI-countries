@@ -1,5 +1,6 @@
 const axios = require("axios");
 const Sequelize = require('sequelize');
+const formatActivities = require("../utils/generalFunctions")
 const {Country, Activity} = require("../db")
 
   const getActivities = async () => {
