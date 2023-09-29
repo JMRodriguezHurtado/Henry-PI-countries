@@ -1,6 +1,6 @@
 const deleteActivity = require("../controllers/deleteActivity");
 
-const deleteActivity = async (req, res) => {
+const deleteActivityhandler = async (req, res) => {
     const { idActivity } = req.params;
     try {
       const activity = await deleteActivity(idActivity);
@@ -12,4 +12,4 @@ const deleteActivity = async (req, res) => {
     }
   };
 
-  module.exports = deleteActivity;
+  module.exports = deleteActivityhandler;
