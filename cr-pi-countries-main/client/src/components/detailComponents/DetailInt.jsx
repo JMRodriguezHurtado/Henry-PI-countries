@@ -1,19 +1,22 @@
 import { Link } from "react-router-dom";
+import {Container, DivContainer, LoadingContainer, Map,
+        LoadingText, ButtonContainer, HomeButton, FloatingBox,
+      } from "./detailStyles";
 
 const DetailInt = (props) => {
     const { isLoading, countryBdd, selectedActivity, setSelectedActivity } =
       props;
     return (
-      <div>Aqui el siguiente elemento esta envuelto
+      <Container>
         {isLoading ? (
-          <div>Este elemento envuelve el loading
-            <div>Aqui va un mapa<div/>
-            <div>Aqui va el Loading</div>
-          </div>
+          <LoadingContainer>
+            <Map />
+            <LoadingText>Loading...</LoadingText>
+          </LoadingContainer>
         ) : (
           <div>
             {countryBdd.map((country) => (
-              <div key={country.id}>este es un contenedor
+              <DivContainer key={country.id}>
                 <h1>ID: {country.id}</h1>
                 <h1>Name: {country.name}</h1>
                 <img src={country.flags} alt={country.name} />
@@ -37,23 +40,23 @@ const DetailInt = (props) => {
                     <span>No available activities</span>
                   )}
                   {selectedActivity && (
-                    <div>Esto estaria flotando
+                    <FloatingBox>
                       <p>Difficulty: {selectedActivity.dificultad}</p>
                       <p>Duration: {selectedActivity.duracion}</p>
                       <p>Season: {selectedActivity.temporada}</p>
-                    </div>
+                    </FloatingBox>
                   )}
                 </h2>
-              </div>
+              </DivContainer>
             ))}
-            <div>Esto contiene botones
+            <ButtonContainer>
               <Link to="/home">
                 <button>Home</button>
               </Link>
-            </div>
+            </ButtonContainer>
           </div>
         )}
-      </div>
+      </Container>
     );
   };
   
