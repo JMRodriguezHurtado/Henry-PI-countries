@@ -1,4 +1,5 @@
 import React from "react";
+import { PaginationWrapper } from "./paginationStyles";
 
 const Pagination = ({ currentPage, totalPages, handlePageClick }) => {
     const pageLimit = 2;
@@ -24,7 +25,7 @@ const Pagination = ({ currentPage, totalPages, handlePageClick }) => {
     };
   
     return (
-      <div>Contenedor de la paginacion
+      <PaginationWrapper>
         <button onClick={handlePrevClick} disabled={currentPage === 1}>
           Prev
         </button>
@@ -48,7 +49,7 @@ const Pagination = ({ currentPage, totalPages, handlePageClick }) => {
         <button onClick={handleNextClick} disabled={currentPage === totalPages}>
           Next
         </button>
-      </div>
+      </PaginationWrapper>
     );
   };
   

@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import  clearSearch  from "../../redux/action";
+import { clearSearch } from "../../redux/action";
 import Card from "../cardComponents/Card";
+import { CardsStyle } from "./cardsStyles";
 import Pagination from "../../components/paginationComponents/pagination";
 
 const Cards = () => {
@@ -34,14 +35,14 @@ const Cards = () => {
 
   if (currentCountries.length === 0) {
     return (
-      <div>Este elemento envuelve al mensaje de error
+      <CardsStyle>
         <p>Network error, please contact support</p>
-      </div>
+      </CardsStyle>
     );
   }
 
   return (
-    <div>Aqui inicia un elemento que envuelve las cards
+    <CardsStyle>
       {currentCountries.map((country) => (
         <Card
           key={country.id}
@@ -56,7 +57,7 @@ const Cards = () => {
         totalPages={pageNumbers}
         handlePageClick={handlePageClick}
       />
-    </div>
+    </CardsStyle>
   );
 };
 

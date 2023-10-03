@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-
+import { BGContainer, GeneralContainer,
+         FormContainer, ErrorSpan,
+         CountriesContainer, Selected,
+         SuccessSpan } from "./formStyles"; 
 const FormInt = (props) => {
     const {
       handleSubmit,
@@ -14,9 +17,9 @@ const FormInt = (props) => {
       success,
     } = props;
     return (
-      <div>Este es un contenedor del background
-        <div>Este es el contenedor general
-          <div onSubmit={handleSubmit}>Este es el contenedor del formato
+      <BGContainer>
+        <GeneralContainer>
+          <FormContainer onSubmit={handleSubmit}>Este es el contenedor del formato
             <label htmlFor="name">Name</label>
             <input
               type="text"
@@ -59,7 +62,7 @@ const FormInt = (props) => {
               <option value="Primavera">Primavera</option>
             </select>
   
-            <div>Este es un contenedor para los paises
+            <CountriesContainer>
               <label htmlFor="countries">Countries</label>
               <input type="text" onChange={handleSearch} value={searchTerm} />
               <ul>
@@ -79,19 +82,19 @@ const FormInt = (props) => {
                 {input.countries.map((country, index) => (
                   <span key={index}>
                     {country}{" "}
-                    <div
+                    <Selected
                       type="button"
                       onClick={() => handleCountryRemove(index)}
                     >con esto se seleccionan cosas
                       x
-                    </div>
+                    </Selected>
                   </span>
                 ))}
               </div>
               {errorMessage.countries && (
-                <span>{errorMessage.countries}</span>
+                <ErrorSpan>{errorMessage.countries}</ErrorSpan>
               )}
-            </div>
+            </CountriesContainer>
             {!errorMessage.name &&
               !errorMessage.countries &&
               !errorMessage.other &&
@@ -109,17 +112,17 @@ const FormInt = (props) => {
               </button>
             )}
             {success && (
-              <span> La Actividad se creo con exito! </span>
+              <SuccessSpan> La Actividad se creo con exito! </SuccessSpan>
             )}
             {success && (
               <button onClick={() => window.location.reload()}>OK</button>
             )}
-          </div>
+          </FormContainer>
           <Link to="/home">
             <button>Home</button>
           </Link>
-        </div>
-      </div>
+        </GeneralContainer>
+      </BGContainer>
     );
   };
   
