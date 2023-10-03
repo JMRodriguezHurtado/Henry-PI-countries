@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { clearSearch } from "../../redux/actions";
-import Card from "../cardComponent/Card";
-
-import Pagination from "../../components/paginationComponent/Pagination.jsx";
+import  clearSearch  from "../../redux/action";
+import Card from "../cardComponents/Card";
+import Pagination from "../../components/paginationComponents/pagination";
 
 const Cards = () => {
   const dispatch = useDispatch();

@@ -1,13 +1,21 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  NavBarContainer,
+  NavLinks,
+  SearchBarContainer,
+  FilterContainer,
+  Img,
+} from "./navBarStyles";
+import {
     clearSearch,
     searchCountries,
     filterByContinent,
     filterByActivity,
     sortByName,
     sortByPopulation,
-  } from "../../redux/actions";
+  } from "../../redux/action";
+import Wmap from "../../utils/imagenes/Wmap.jpg";
 
 
   export default function NavBar() {
@@ -44,27 +52,27 @@ import {
     };
   
     return (
-      <div>Este es el contenedor de la NavBar
-        <div>estos seran los estilos de los links
+      <NavBarContainer>
+        <NavLinks>
           <Link to="/form">
             <h3>New Activity</h3>
           </Link>
           <Link to="/activities">
             <h3>Activities</h3>
           </Link>
-        </div>
+        </NavLinks>
         <Img src={`${mapa}`} alt="" />
-        <div>contenedor de la searchbar
+        <SearchBarContainer>
           <input
             type="text"
-            placeholder="Search Country"
+            placeholder="Busca el Pais"
             onChange={handleSearch}
           />
-        </div>
-        <Img src={`${mapa}`} alt="" />
-        <div>contenedor de los filtros
+        </SearchBarContainer>
+        <Img src={`${Wmap}`} alt="" />
+        <FilterContainer>
           <select onChange={handleContinentFilter}>
-            <option value="">Filter by Continent</option>
+            <option value="">Filtro por Continente</option>
             <option value="Antarctic">Antarctic</option>
             <option value="Africa">Africa</option>
             <option value="Americas">Americas</option>
@@ -73,7 +81,7 @@ import {
             <option value="Oceania">Oceania</option>
           </select>
           <select onChange={handleActivityFilter}>
-            <option value="">Filter by Activity</option>
+            <option value="">Filtro por Actividad</option>
             {activities.map((a) => (
               <option key={a.id} value={a.name}>
                 {a.name}
@@ -81,7 +89,7 @@ import {
             ))}
           </select>
           <select onChange={handleNameSort}>
-            <option value="">Sort by Name</option>
+            <option value="">Ordenar por nombre</option>
             <option value="asc">A-Z</option>
             <option value="desc">Z-A</option>
           </select>
@@ -90,7 +98,7 @@ import {
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
           </select>
-        </div>
-      </div>
+        </FilterContainer>
+      </NavBarContainer>
     );
   }

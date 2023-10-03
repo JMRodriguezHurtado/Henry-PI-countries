@@ -10,7 +10,7 @@ import {
     POST_ACTIVITY,
     GET_ACTIVITIES,
     DELETE_ACTIVITY,
-  } from "./actions";
+  } from "./action";
   
   const initialState = {
     countries: [],
