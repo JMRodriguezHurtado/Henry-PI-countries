@@ -5,7 +5,7 @@ import Card from "../cardComponents/Card";
 import { CardsStyle } from "./cardsStyles";
 import Pagination from "../../components/paginationComponents/pagination";
 
-const Cards = () => {
+export default function Cards () {
   const dispatch = useDispatch();
   const countries = useSelector((state) => {
     return state.searchResults.length > 0
@@ -61,4 +61,3 @@ const Cards = () => {
   );
 };
 
-export default Cards;
