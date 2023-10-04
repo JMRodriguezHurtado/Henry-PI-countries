@@ -1,5 +1,5 @@
 import React from "react";
-import { PaginationWrapper } from "./paginationStyles";
+import styles from "./pagination.module.css";
 
 const Pagination = ({ currentPage, totalPages, handlePageClick }) => {
     const pageLimit = 2;
@@ -25,31 +25,31 @@ const Pagination = ({ currentPage, totalPages, handlePageClick }) => {
     };
   
     return (
-      <PaginationWrapper>
-        <button onClick={handlePrevClick} disabled={currentPage === 1}>
+      <div className={styles.paginationWrapper}>
+        <button className={styles.button} onClick={handlePrevClick} disabled={currentPage === 1}>
           Prev
         </button>
         {startPage > 1 && <button onClick={() => handlePageClick(1)}>1</button>}
         {startPage > 2 && <span>...</span>}
         {pageNumbers.map((number) => (
-          <button
+          <button className={styles.button}
             key={number}
             onClick={() => handlePageClick(number)}
-            className={currentPage === number ? "active" : ""}
+            {...currentPage === number ? "active" : ""}
           >
             {number}
           </button>
         ))}
         {endPage < totalPages - 1 && <span>...</span>}
         {endPage < totalPages && (
-          <button onClick={() => handlePageClick(totalPages)}>
+          <button className={styles.button} onClick={() => handlePageClick(totalPages)}>
             {totalPages}
           </button>
         )}
-        <button onClick={handleNextClick} disabled={currentPage === totalPages}>
+        <button className={styles.button} onClick={handleNextClick} disabled={currentPage === totalPages}>
           Next
         </button>
-      </PaginationWrapper>
+      </div>
     );
   };
   

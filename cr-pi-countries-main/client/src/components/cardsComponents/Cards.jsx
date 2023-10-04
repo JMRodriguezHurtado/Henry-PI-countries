@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { clearSearch } from "../../redux/action";
 import Card from "../cardComponents/Card";
-import { CardsStyle } from "./cardsStyles";
+import styles from "./cards.module.css"
 import Pagination from "../../components/paginationComponents/pagination";
 
 export default function Cards () {
@@ -35,14 +35,14 @@ export default function Cards () {
 
   if (currentCountries.length === 0) {
     return (
-      <CardsStyle>
+      <div className={styles.cardsStyle}>
         <p>Network error, please contact support</p>
-      </CardsStyle>
+      </div>
     );
   }
 
   return (
-    <CardsStyle>
+    <div className={styles.cardsStyle}>
       {currentCountries.map((country) => (
         <Card
           key={country.id}
@@ -57,7 +57,7 @@ export default function Cards () {
         totalPages={pageNumbers}
         handlePageClick={handlePageClick}
       />
-    </CardsStyle>
+    </div>
   );
 };
 

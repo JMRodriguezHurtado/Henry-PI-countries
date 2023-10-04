@@ -1,22 +1,20 @@
 import { Link } from "react-router-dom";
-import {Container, DivContainer, LoadingContainer, Map,
-        LoadingText, ButtonContainer, HomeButton, FloatingBox,
-      } from "./detailStyles";
+import styles from "./detail.module.css";
 
 const DetailInt = (props) => {
     const { isLoading, countryBdd, selectedActivity, setSelectedActivity } =
       props;
     return (
-      <Container>
+      <div className={styles.container}>
         {isLoading ? (
-          <LoadingContainer>
-            <Map />
-            <LoadingText>Loading...</LoadingText>
-          </LoadingContainer>
+          <div className={styles.loadingContainer}>
+            <div className={styles.map} />
+            <div className={styles.loadingText}>Loading...</div>
+          </div>
         ) : (
           <div>
             {countryBdd.map((country) => (
-              <DivContainer key={country.id}>
+              <div className={styles.divContainer} key={country.id}>
                 <h1>ID: {country.id}</h1>
                 <h1>Name: {country.name}</h1>
                 <img src={country.flags} alt={country.name} />
@@ -40,23 +38,23 @@ const DetailInt = (props) => {
                     <span>No available activities</span>
                   )}
                   {selectedActivity && (
-                    <FloatingBox>
+                    <div className={styles.floatingBox}>
                       <p>Difficulty: {selectedActivity.dificultad}</p>
                       <p>Duration: {selectedActivity.duracion}</p>
                       <p>Season: {selectedActivity.temporada}</p>
-                    </FloatingBox>
+                    </div>
                   )}
                 </h2>
-              </DivContainer>
+              </div>
             ))}
-            <ButtonContainer>
+            <div className={styles.buttonContainer}>
               <Link to="/home">
-                <button>Home</button>
+                <button className={styles.homeButton}>Home</button>
               </Link>
-            </ButtonContainer>
+            </div>
           </div>
         )}
-      </Container>
+      </div>
     );
   };
   

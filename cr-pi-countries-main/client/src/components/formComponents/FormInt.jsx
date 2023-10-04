@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { BGContainer, GeneralContainer,
-         FormContainer, ErrorSpan,
-         CountriesContainer, Selected,
-         SuccessSpan } from "./formStyles"; 
+import styles from "./form.module.css"
+
 const FormInt = (props) => {
     const {
       handleSubmit,
@@ -17,10 +15,10 @@ const FormInt = (props) => {
       success,
     } = props;
     return (
-      <BGContainer>
-        <GeneralContainer>
-          <FormContainer onSubmit={handleSubmit}>Este es el contenedor del formato
-            <label htmlFor="name">Name</label>
+      <div className={styles.bgContainer}>
+        <div className={styles.generalContainer}>
+          <div className={styles.formContainer} onSubmit={handleSubmit}>
+            <label className={styles.label} htmlFor="name">Name</label>
             <input
               type="text"
               name="name"
@@ -28,8 +26,8 @@ const FormInt = (props) => {
               onChange={handleChange}
             />
             {errorMessage.name && <span>{errorMessage.name}</span>}
-            <label htmlFor="difficulty">Difficulty</label>
-            <select
+            <label className={styles.label} htmlFor="difficulty">Difficulty</label>
+            <select className={styles.select}
               name="difficulty"
               value={input.difficulty}
               onChange={handleChange}
@@ -41,8 +39,8 @@ const FormInt = (props) => {
               <option value="5">5</option>
             </select>
   
-            <label htmlFor="duration">Duration (hr)</label>
-            <select
+            <label className={styles.label} htmlFor="duration">Duration (hr)</label>
+            <select className={styles.select}
               name="duration"
               value={input.duration}
               onChange={handleChange}
@@ -54,20 +52,20 @@ const FormInt = (props) => {
               ))}
             </select>
   
-            <label htmlFor="temporada">Temporada</label>
-            <select name="temporada" value={input.temporada} onChange={handleChange}>
+            <label className= {styles.label} htmlFor="temporada">Temporada</label>
+            <select className={styles.select} name="temporada" value={input.temporada} onChange={handleChange}>
               <option value="Verano">Verano</option>
               <option value="Otoño">Otoño</option>
               <option value="Invierno">Invierno</option>
               <option value="Primavera">Primavera</option>
             </select>
   
-            <CountriesContainer>
+            <div className={styles.countriesContainer}>
               <label htmlFor="countries">Countries</label>
               <input type="text" onChange={handleSearch} value={searchTerm} />
-              <ul>
+              <ul className={styles.ul}>
                 {filteredCountries.map((country) => (
-                  <li key={country.id}>
+                  <li className={styles.li} key={country.id}>
                     {country.name}{" "}
                     <button
                       type="button"
@@ -82,19 +80,19 @@ const FormInt = (props) => {
                 {input.countries.map((country, index) => (
                   <span key={index}>
                     {country}{" "}
-                    <Selected
+                    <button className={styles.button}
                       type="button"
                       onClick={() => handleCountryRemove(index)}
-                    >con esto se seleccionan cosas
+                    >
                       x
-                    </Selected>
+                    </button>
                   </span>
                 ))}
               </div>
               {errorMessage.countries && (
-                <ErrorSpan>{errorMessage.countries}</ErrorSpan>
+                <span>{errorMessage.countries}</span>
               )}
-            </CountriesContainer>
+            </div>
             {!errorMessage.name &&
               !errorMessage.countries &&
               !errorMessage.other &&
@@ -103,7 +101,7 @@ const FormInt = (props) => {
               <span>{errorMessage.other}</span>
             )}
             {errorMessage.other && (
-              <button
+              <button className={styles.button}
                 onClick={() => {
                   window.location.reload();
                 }}
@@ -112,17 +110,17 @@ const FormInt = (props) => {
               </button>
             )}
             {success && (
-              <SuccessSpan> La Actividad se creo con exito! </SuccessSpan>
+              <span> La Actividad se creo con exito! </span>
             )}
             {success && (
-              <button onClick={() => window.location.reload()}>OK</button>
+              <button className={styles.button} onClick={() => window.location.reload()}>OK</button>
             )}
-          </FormContainer>
+          </div>
           <Link to="/home">
-            <button>Home</button>
+            <button className={styles.button}>Home</button>
           </Link>
-        </GeneralContainer>
-      </BGContainer>
+        </div>
+      </div>
     );
   };
   

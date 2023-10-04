@@ -1,34 +1,32 @@
 
-import { Link } from "react-router-dom";
-import { ActivitiesWrapper, ActivitiesContainer,
-         ActivityCard, ActivityInfo, 
-         HomeButtonWrapper} from "./activityStyles"; 
+import {Link} from "react-router-dom";
+import styles from "./activityInt.module.css"; 
 
          const ActivityInt = ({ activities, handleDelete }) => {
           return (
-            <ActivitiesWrapper>
-              <h1>Activities</h1>
-              <ActivitiesContainer>
+            <div className= {styles.activitiesWrapper}>
+              <h1 className= {styles.h1}>Activities</h1>
+              <div className={styles.activitiesContainer}>
                 {activities.map((activity, index) => (
-                  <ActivityCard key={index}>
+                  <div className={styles.activityCard} key={index}>
                     <button onClick={() => handleDelete(activity.id)}>X</button>
                     <h2>{activity.name}</h2>
-                    <img src="" alt="" />
-                    <ActivityInfo>
+                   
+                    <div className={styles.activityInfo}>
                       <p>Difficulty: {activity.difficulty}</p>
                       <p>Duration: {activity.duration} Hrs</p>
                       <p>Season: {activity.season}</p>
                       <p>Countries: {activity.countries}</p>
-                    </ActivityInfo>
-                  </ActivityCard>
+                    </div>
+                  </div>
                 ))}
-              </ActivitiesContainer>
-              <HomeButtonWrapper>
-                <Link to={"/home"}>
+              </div>
+              <div className={styles.homeButtonWrapper}>
+                <Link to="/home">
                   <button>Home</button>
                 </Link>
-              </HomeButtonWrapper>
-            </ActivitiesWrapper>
+              </div>
+            </div>
           );
         };
         

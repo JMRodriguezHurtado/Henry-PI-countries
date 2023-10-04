@@ -1,16 +1,8 @@
 import axios from "axios";
-
-export const GET_COUNTRIES = "GET_COUNTRIES";
-export const GET_COUNTRY_DETAIL = "GET_COUNTRY_DETAIL";
-export const SEARCH_COUNTRIES = "SEARCH_COUNTRIES";
-export const CLEAR_SEARCH = "CLEAR_SEARCH";
-export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
-export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
-export const SORT_BY_NAME = "SORT_BY_NAME";
-export const SORT_BY_POPULATION = "SORT_BY_POPULATION";
-export const POST_ACTIVITY = "POST_ACTIVITY";
-export const GET_ACTIVITIES = "GET_ACTIVITIES";
-export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
+import { GET_COUNTRIES, GET_ACTIVITIES, GET_COUNTRY_DETAIL,
+         SEARCH_COUNTRIES, CLEAR_SEARCH,
+          FILTER_BY_ACTIVITY, FILTER_BY_CONTINENT, SORT_BY_NAME,
+          SORT_BY_POPULATION, POST_ACTIVITY, DELETE_ACTIVITY} from "./action-types"; 
 
 export function getCountries() {
   return function (dispatch) {
