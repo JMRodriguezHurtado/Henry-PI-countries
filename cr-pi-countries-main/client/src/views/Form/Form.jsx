@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import { connect } from "react-redux";
-import { postActivity } from "../../redux/action";
+import {useState} from "react";
+import {connect} from "react-redux";
+import postActivity from "../../redux/action";
 import FormInt from "../../components/formComponents/FormInt";
 
 function Form({ postActivity, countries }) {

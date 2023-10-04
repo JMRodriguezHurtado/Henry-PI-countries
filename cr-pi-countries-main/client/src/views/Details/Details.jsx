@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getCountryDetail } from "../../redux/action";
+import useParams  from "react-router-dom";
+import getCountryDetail from "../../redux/action";
 import DetailInt from "../../components/detailComponents/DetailInt";
 
 const Detail = () => {

@@ -1,6 +1,6 @@
-import React from "react";
+
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteActivity } from "../../redux/action";
+import  deleteActivity  from "../../redux/action";
 import ActivityInt from "../../components/activityComponents/ActivityInt";
 
 
