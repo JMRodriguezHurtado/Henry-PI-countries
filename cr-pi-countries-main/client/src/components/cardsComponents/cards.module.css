@@ -1,0 +1,71 @@
+.countriesSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  overflow: auto;
+}
+
+.countriesDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+  gap: 25px;
+  width: 100%;
+}
+
+.countriesSection h1{
+  position: absolute;
+  top: 0;
+  color: #ffffffcc;
+}
+
+.loadingGif{
+  position: absolute;
+  top: calc(50% - 75px);
+  width: 200px;
+  height: 150px;
+}
+
+.pagination{
+  display: flex;
+  width: 88%;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+
+}
+
+.pagination div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  width: max-content;
+}
+
+.pagination p{
+  width: 40px;
+  color: #ffffffcc;
+  text-align: center;
+  margin: 0;
+}
+
+.paginationButton{
+  height: 25px;
+  font-size: medium;
+  padding: 1px 15px 0 17px;
+  letter-spacing: 2px;
+  background-color: #1b1c1e;
+  color: #ffffffcc;
+  border: none;
+  box-shadow: 0 0 5px #ffffffcc;
+}
+
+.paginationButton:hover{
+  cursor: pointer;
+  box-shadow: 0 0 3px #ffffffcc;
+  transform: scale(0.99);
+}
