@@ -1,108 +1,45 @@
-.navBarContainer {
-    margin: -10px 30px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    color: #000;
-    padding: 1rem;
-    border: 1px solid #000;
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px 2px #000;
-    padding: 0.5rem 1rem;
-  
-    @media (max-width: 600px) {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  
-  .navLinks {
-    display: flex;
-    align-items: center;
-    font-family: "Urban Jungle";
-  }
-  
-  .navLinks h3 {
-    font-size: 1.5rem;
-    justify-content: space-between;
-    margin-right: 2rem;
-    margin-left: 2rem;
-  }
-  
-  .navLinks a {
-    color: black;
-    margin-right: 1rem;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-  
-  .navLinks a:hover {
-    text-decoration: underline;
-  }
-  
-  @media (max-width: 600px) {
-    .navLinks {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  
-  .searchBarContainer input {
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    box-shadow: 2px 2px 2px 2px #000;
-    font-size: 1rem;
-  }
-  
-  @media (max-width: 600px) {
-    .searchBarContainer {
-      margin: 0.5rem;
-    }
-  }
-  
-  .filterContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px 2px #000;
-    border-radius: 5px;
-  }
-  
-  .filterContainer select {
-    padding: 5px;
-    font-size: 16px;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #000;
-    margin-right: 10px;
-  }
-  
-  .filterContainer option {
-    background-color: #fff;
-    color: #000;
-    font-size: 16px;
-  }
-  
-  .filterContainer label {
-    margin-right: 10px;
-    font-size: 16px;
-  }
-  
-  @media (max-width: 600px) {
-    .filterContainer {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  
-  .img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
+.nav{
+  display: flex;
+  width: 85%;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.nav a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #ffffff9d;
+  padding: 0;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 5px #000000;
+  position: relative;
+}
+
+.nav a:hover{
+  box-shadow: 0 0 3px #000000;
+  transform: scale(.95);
+}
+
+.nav img{
+  width: 20px;
+  height: 20px;
+}
+
+.nav p{
+  display: none;
+  margin: 0;
+  position: absolute;
+  top: 42px;
+  color: #000000;
+  background-color:#ffffff9d;
+  padding: 0 5px;
+  border-radius: 50px;
+}
+
+.nav a:hover p{
+  display: block;
+}

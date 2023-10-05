@@ -2,9 +2,9 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { showDetails } from "../../redux/action"
-import loadingGif from '../../assets/loadingGif.gif'
+import loadinggif from '../../assets/loadingGif.gif'
 import style from './detail.module.css'
-import Nav from "../../components/Nav/Nav"
+import navBar from "../navBarComponents/navBar"
 
 
 
@@ -24,11 +24,11 @@ export default function Detail() {
         <div className={style.detailPage}>
             <img className={style.backgroundImage} src={details.image} alt="" />
             <div className={style.nav}>
-                <Nav/> 
+                <navBar/> 
             </div>
             {
                 loading
-                ?   <img src={loadingGif} alt="" />
+                ?   <img src={loadinggif} alt="" />
                 :   <div className={style.detailsDiv}>
                         <h1>{details.name}</h1>
                         <img src={details.image} alt="" />

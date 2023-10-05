@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react'
 import style from './searchbar.module.css'
 import { useDispatch } from 'react-redux'

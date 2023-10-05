@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCountries, setPage } from "../../redux/action";
 
-import loadingGif from '../../assets/loadingGif.gif'
+import loadinggif from '../../assets/loadingGif.gif'
 import style from './cards.module.css'
 import Card from "../cardComponents/Card";
 
@@ -39,7 +39,7 @@ export default function Countries() {
             {
                 loading 
                 ? (
-                    <img className={style.loadingGif} src={loadingGif} alt="" />
+                    <img className={style.loadinggif} src={loadinggif} alt="" />
                 )
                 : (
                     <div className={style.countriesDiv}>

@@ -3,10 +3,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import Nav from '../../components/Nav/Nav';
+import navBar from '../navBarComponents/navBar';
 import { createActivity, getAllCountries } from '../../redux/action';
 import { validateForm, validateSubmit } from './Validation/validations';
-import creativity from '../../assets/creativityGif.gif'
+import create from '../../assets/create.gif'
 import './form.css'
 import style from './form.module.css'
 
@@ -65,10 +65,10 @@ export default function Form() {
     }
     
 
-    // LLAMADO PARA RENDERIZAR LOS PAISES
+  
     const countries = useSelector(state => state.allCountries)
 
-    //////// MANEJADORES PARA EL CHANGE DE LOS INPUTS
+
 
     const handleChange = (event) => {
 
@@ -112,7 +112,7 @@ export default function Form() {
     }
 
 
-    //////// FUNCIONES PARA LOS SELECTS (CSS)
+  
 
     const [difficulty, setDifficulty] = useState(false)
     const [season, setSeason] = useState(false)
@@ -242,7 +242,7 @@ export default function Form() {
 
     }
 
-    // ELIMINAR UN PAIS COMO OPCION
+
 
     const handleDeleteCountry = (deletedCountry) => {
         const udpdatedCountries = [...form.Countries].filter(country => country !== deletedCountry)
@@ -258,9 +258,9 @@ export default function Form() {
     return (
         <div className={style.formPage} onClick={handleClickOutside}>
             <div className={style.nav}>
-                <Nav/> 
+                <navBar/> 
             </div>
-            <img className={style.creativityGif} src={creativity} alt="" />
+            <img className={style.creativityGif} src={create} alt="" />
             <h1>Time to create an Activity</h1>
             <form onSubmit={submitHandler}>
                 <div className='selectBox'>

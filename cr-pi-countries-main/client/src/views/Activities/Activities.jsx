@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { deleteActivity, getActivities } from "../../redux/action"
-import Nav from "../../components/Nav/Nav"
-import bin from '../../assets/delete.png'
+import navBar from "../../components/navBarComponents/navBar"
+import bin from '../../assets/bin.png'
 import style from './activityInt.module.css'
 
 
-export default function() {
+export default function Activity() {
 
     const activities = useSelector(state => state.activities)
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export default function() {
     return (
         <div className={style.activitiesPage}>
             <div className={style.nav}>
-                <Nav/> 
+                <navBar/> 
             </div>
             {
                 loading
