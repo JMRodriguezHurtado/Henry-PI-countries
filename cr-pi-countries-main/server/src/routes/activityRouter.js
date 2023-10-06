@@ -1,13 +1,14 @@
 const { Router } = require("express");
-const postActivity = require("../handlers/postActivitesHandler");
-const getActivities = require("../handlers/getActivitieshandler");
+const postActivityHandler = require("../handlers/postActivitesHandler");
+const getActivitiesHandler = require("../handlers/getActivitieshandler");
 const deleteActivity = require("../handlers/deleteActivityhandler");
+
 
 const activityRouter = Router();
 
-activityRouter.post("/", postActivity);
+activityRouter.post("/", postActivityHandler);
 
-activityRouter.get("/", getActivities);
+activityRouter.get("/", getActivitiesHandler);
 
 activityRouter.delete("/", deleteActivity)
 

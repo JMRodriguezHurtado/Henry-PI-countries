@@ -1,15 +1,20 @@
-const deleteActivity = require("../controllers/deleteActivity");
+const deleteActivityController = require('../controllers/deleteActivity')
+const getActivities = require('../controllers/getActivities')
 
-const deleteActivityhandler = async (req, res) => {
-    const { idActivity } = req.params;
+
+const deleteActivity = async(req, res) => {
+
     try {
-      const activity = await deleteActivity(idActivity);
-      res
-        .status(200)
-        .json({ message: "La actividad se ha borrado con exito", activity });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
+        const {id} = req.params
 
-  module.exports = deleteActivityhandler;
+        await deleteActivityController(id)
+
+        const activities = await getActivities()
+
+        res.status(200).json(activities)
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+}
+
+module.exports = deleteActivity

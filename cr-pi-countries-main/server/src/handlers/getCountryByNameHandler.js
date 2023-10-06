@@ -1,18 +1,21 @@
-const axios = require("axios");
-const Sequelize = require('sequelize');
-const {Country, Activity} = require("../db");
-const getCountryByName = require("../controllers/getCountryByName");
+const getCountriesByName = require('../controllers/getCountryByName')
 
-const getCountryByNameHandler = async (req, res) => {
-    const { name } = req.query;
+
+const getByNameHandler = async(req, res) => {
+
     try {
-     (name) 
-        const queryName = await getCountryByName(name);
-        res.status(200).send(queryName);
-      } 
-     catch (error) {
-      res.status(500).send(error);
-    }
-  };
 
-  module.exports = getCountryByNameHandler;
+        const {name} = req.query
+
+        console.log(name)
+
+        const countries = await getCountriesByName(name)
+
+        res.status(200).json(countries)
+        
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+}
+
+module.exports = getByNameHandler

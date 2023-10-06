@@ -1,30 +1,38 @@
-const { Activity, Country } = require("../db"); 
+const { Activity, Country } = require("../db")
 
-    const postActivities = async (
-        nombre,
-        dificultad,
-        duracion,
-        temporada,
-        rating,
-        countries
-      ) => {
-        const existingActivity = await Activity.findOne({ where: { nombre } });
-        if (existingActivity) {
-          throw new Error("Esta actividad ya existe");
+
+const postActivity = async(name, difficulty, duration, season, Countries, id) => {
+
+    try {
+
+        if(!name || !difficulty || !duration || !season || !Countries){
+            throw new Error('Some data is missing')
         }
-        if (!countries || countries.length === 0) {
-          throw new Error("Toda actividad debe tener almenos un pais");
-        }
+
+        const assignedCountries = await Country.findAll({
+            where: {
+                name: Countries
+            }
+        })
+
+        console.log(id, typeof id)
+
         const newActivity = await Activity.create({
-          nombre,
-          dificultad,
-          duracion,
-          temporada,
-          rating
-        });
-        await newActivity.setCountries(countries);
-        return newActivity;
-      };
-    
+            name,
+            difficulty,
+            duration,
+            season,
+            UserId: id.toString()
+        })
 
-module.exports = postActivities;
+       /*  await newActivity.addCountries(assignedCountries)
+ */
+        return newActivity
+        
+    } catch (error) {
+        throw error
+    }
+
+}
+
+module.exports = postActivity

@@ -1,17 +1,16 @@
-const axios = require("axios");
-const Sequelize = require('sequelize');
-const {Country, Activity} = require("../db");
-const getCountries = require("../controllers/getCountries");
+const getCountries = require('../controllers/getCountries')
 
-const getCountriesHandler = async (req, res) => {
-    
+const getCountriesHandler = async(req, res) => {
+
     try {
-        const allCountries = await getCountries();
-        res.status(200).send(allCountries);
-      }
-     catch (error) {
-      res.status(500).send(error);
-    }
-  };
+        const allCountries = await getCountries()
 
-  module.exports = getCountriesHandler;
+        return res.status(200).json(allCountries)
+        
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    
+}
+
+module.exports = getCountriesHandler

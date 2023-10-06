@@ -1,20 +1,17 @@
-const axios = require("axios");
-const Sequelize = require('sequelize');
-const {Country, Activity} = require("../db")
+const getCountries = require('./getCountries')
 
-const getCountryByName = async (name) => {
-    const country = await Country.findAll({
-      where: {
-        name: {
-          [Sequelize.Op.iLike]: `%${name}%`,
-        },
-      },
-      include: {
-        model: Activity,
-        through: { attributes: [] },
-      },
-    });
-    return country;
-  };
 
-module.exports = getCountryByName;
+const getCountriesByName = async(name) => {
+
+    let countries = await getCountries()
+
+    console.log(countries)
+
+    countries = countries.filter(country => {
+        return country.name.toLowerCase().includes(name.toLowerCase())
+    })
+
+    return countries
+}
+
+module.exports = getCountriesByName
