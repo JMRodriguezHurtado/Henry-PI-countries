@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import { showDetails } from "../../redux/action"
 import loadinggif from '../../assets/loadingGif.gif'
 import style from './detail.module.css'
-import navBar from "../navBarComponents/navBar"
+import NavBar from "../navBarComponents/navBar"
 
 
 
@@ -24,7 +24,7 @@ export default function Detail() {
         <div className={style.detailPage}>
             <img className={style.backgroundImage} src={details.image} alt="" />
             <div className={style.nav}>
-                <navBar/> 
+                <NavBar/> 
             </div>
             {
                 loading

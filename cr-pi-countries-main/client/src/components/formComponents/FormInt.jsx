@@ -3,7 +3,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import navBar from '../navBarComponents/navBar';
+import NavBar from '../navBarComponents/navBar';
 import { createActivity, getAllCountries } from '../../redux/action';
 import { validateForm, validateSubmit } from './Validation/validations';
 import create from '../../assets/create.gif'
@@ -110,10 +110,14 @@ export default function Form() {
             })
         }
     }
-
-
-  
-
+    const handleRating = (event) => {
+        setForm({
+          ...form,
+          rating: event.target.value
+        })
+      }
+    
+    const [rating, setRating] = useState(false)
     const [difficulty, setDifficulty] = useState(false)
     const [season, setSeason] = useState(false)
     const [country, setCountry] = useState(false)
@@ -139,6 +143,29 @@ export default function Form() {
             difficultyOptions.classList.add('hideDifficulty')
         }
         event.currentTarget.classList.toggle('difficultyActive')
+        
+    }
+    const handleRatingChange = (event) => {
+        const ratingOptions = document.querySelector("#ratingOptions")
+
+        if(!rating) {
+            setRating(true)
+            ratingOptions.classList.remove('hiddenOptions');            
+            ratingOptions.classList.add('showRating');           
+
+        } else{
+            setRating(false)
+
+            setTimeout(() => {
+                ratingOptions.classList.remove('hideRating');
+                ratingOptions.classList.add('hiddenOptions')
+                
+            }, 500);
+            
+            ratingOptions.classList.remove('showRating')
+            ratingOptions.classList.add('hideRating')
+        }
+        event.currentTarget.classList.toggle('ratingActive')
         
     }
 
@@ -258,10 +285,10 @@ export default function Form() {
     return (
         <div className={style.formPage} onClick={handleClickOutside}>
             <div className={style.nav}>
-                <navBar/> 
+                <NavBar/> 
             </div>
             <img className={style.creativityGif} src={create} alt="" />
-            <h1>Time to create an Activity</h1>
+            <h1>Let's create an Activity</h1>
             <form onSubmit={submitHandler}>
                 <div className='selectBox'>
                     <div className={style.label}>
@@ -278,6 +305,32 @@ export default function Form() {
                         </div>
                     </div>
                     <div id='difficulty' name='difficulty' value={form.difficulty} onChange={handleChange} className={style.options}>{form.difficulty}</div>
+                    <div className='hiddenOptions' id="difficultyOptions">
+                        <div className="option">
+                            <p onClick={handleDifficulty}>1</p>
+                        </div>
+                        <div className="option">
+                            <p onClick={handleDifficulty}>2</p>
+                        </div>
+                        <div className="option">
+                            <p onClick={handleDifficulty}>3</p>
+                        </div>
+                        <div className="option">
+                            <p onClick={handleDifficulty}>4</p>
+                        </div>
+                        <div className="option">
+                            <p onClick={handleDifficulty}>5</p>
+                        </div>
+                    </div>
+                </div>
+                <div className='selectBox'>
+                    {errors?.difficulty && <span>{errors.rating}</span>}
+                    <div onClick={handleSelectDifficulty} className='difficulty'>
+                        <div>
+                            <p className='title'>Rating</p>
+                        </div>
+                    </div>
+                    <div id='difficulty' name='difficulty' value={form.rating} onChange={handleChange} className={style.options}>{form.difficulty}</div>
                     <div className='hiddenOptions' id="difficultyOptions">
                         <div className="option">
                             <p onClick={handleDifficulty}>1</p>

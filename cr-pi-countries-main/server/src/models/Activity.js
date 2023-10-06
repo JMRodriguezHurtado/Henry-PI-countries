@@ -9,11 +9,11 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: false
       },
-      nombre: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      dificultad: {
+      difficulty: {
         type: DataTypes.DECIMAL,
         allowNull: false,
         validator: {
@@ -21,11 +21,11 @@ module.exports = (sequelize) => {
             max: 5,
         }
       },
-      temporada: {
+      season: {
         type: DataTypes.ENUM('Primavera', 'Verano', 'Otoño', 'Invierno'),
         allowNull: false,
       },
-      duracion: {
+      duration: {
         type: DataTypes.FLOAT,
         allowNull: true,
       },

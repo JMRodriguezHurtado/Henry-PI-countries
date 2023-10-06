@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { deleteActivity, getActivities } from "../../redux/action"
-import navBar from "../../components/navBarComponents/navBar"
+import NavBar from "../../components/navBarComponents/navBar"
 import bin from '../../assets/bin.png'
 import style from './activityInt.module.css'
 
@@ -28,7 +28,7 @@ export default function Activity() {
     return (
         <div className={style.activitiesPage}>
             <div className={style.nav}>
-                <navBar/> 
+                <NavBar/> 
             </div>
             {
                 loading
@@ -45,6 +45,7 @@ export default function Activity() {
                                         <p>Difficulty: <b>{activity.difficulty} (max 5)</b></p>
                                         <p>Duration: <b>{activity.duration}hs</b></p>
                                         <p>Recommended season: <b>{activity.season}</b></p>
+                                        <p>Rating: <b>{activity.rating}</b></p>
                                         <div className={style.activityCountries}>
                                             <p>Countries:</p>
                                             <p className={style.countries}>

@@ -28,7 +28,7 @@ export const showDetails = (id) => {
 
             const response = await axios(`http://localhost:3001/countries/${id}`)
             const data = response.data
-            return dispatch({
+            dispatch({
                 type: 'SHOW_DETAILS',
                 payload: data
             })
@@ -68,10 +68,10 @@ export const createActivity = (activity) => {
 
             const {name, difficulty, season, Countries, duration} = activity
 
-            const response = await axios.post('http://localhost:3001/activities', {name, difficulty, season, Countries, duration})
+            const response = await axios.post('http://localhost:3001/activities', {name, difficulty, season, Countries, duration, rating})
             const dbActivity = response.data
 
-            alert('Congratulations, your activity is created')
+            alert('Congratulations, your activity has been created')
             return dispatch({
                 type: 'CREATE_ACTIVITY',
                 payload: dbActivity

@@ -7,7 +7,7 @@ const countryRouter = Router();
 
 countryRouter.get("/", getCountriesHandler);
 
-countryRouter.get("/:idPais", getByIdHandler);
+countryRouter.get("/:id", getByIdHandler);
 
 countryRouter.get("/:name", getByNameHandler);
 

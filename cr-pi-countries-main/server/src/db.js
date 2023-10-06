@@ -30,8 +30,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Country, Activity } = sequelize.models;
 
-Country.belongsToMany(Activity, {through: "country_actividades"});
-Activity.belongsToMany(Country, {through: "country_actividades"});
+Country.belongsToMany(Activity, {through: "country_activities"});
+Activity.belongsToMany(Country, {through: "country_activities"});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

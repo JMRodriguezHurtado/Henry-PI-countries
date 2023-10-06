@@ -6,9 +6,7 @@ import loadinggif from '../../assets/loadingGif.gif'
 import style from './cards.module.css'
 import Card from "../cardComponents/Card";
 
-
 export default function Countries() {
-
 
     const dispatch = useDispatch()
     const countries = useSelector(state => state.renderedCountries)
@@ -19,14 +17,14 @@ export default function Countries() {
     const firstIndexCountry = (currentPage - 1) * countriesPerPage;
     const lastIndexCountry = firstIndexCountry + countriesPerPage;
     const renderedCountries = countries.slice(firstIndexCountry, lastIndexCountry);
-    const lastPage = Math.ceil(countries.length / 10)
+    const lastPage = Math.ceil(countries.length / countriesPerPage);
+
+    const canGoPrevious = currentPage > 1;
+    const canGoNext = currentPage < lastPage;
 
     const handlerPagination = (direction, event) => {
-
-        if((direction === -1 || (countriesPerPage * currentPage) < countries.length) && (currentPage + direction > 0)){
-            const newPage = currentPage + direction
-            dispatch(setPage(newPage))
-        }
+        const newPage = currentPage + direction;
+        dispatch(setPage(newPage));
     }
 
     useEffect(() => {
@@ -34,8 +32,8 @@ export default function Countries() {
     }, [])
 
     return (
-        <div className={style.countriesSection}>
-            <h1>Countries from all over the world</h1>
+        <div >
+            <h1>All Countries</h1>
             {
                 loading 
                 ? (
@@ -44,7 +42,13 @@ export default function Countries() {
                 : (
                     <div className={style.countriesDiv}>
                         <div className={style.pagination}>
-                            <button onClick={(event) => handlerPagination(-1, event)} className={style.paginationButton}>Prev</button>
+                            <button
+                                onClick={(event) => canGoPrevious && handlerPagination(-1, event)}
+                                className={style.paginationButton}
+                                disabled={!canGoPrevious}
+                            >
+                                Prev
+                            </button>
                             <div>
                                 <p>{ currentPage - 3 > 0 && `${currentPage - 3}`}</p>
                                 <p>{ currentPage - 2 > 0 && `${currentPage - 2}`}</p>
@@ -54,8 +58,13 @@ export default function Countries() {
                                 <p>{currentPage + 2 <= lastPage && `${currentPage + 2}`}</p>
                                 <p>{currentPage + 3 <= lastPage && `${currentPage + 3}`}</p>
                             </div>
-
-                            <button onClick={(event) => handlerPagination(1, event)} className={style.paginationButton}>Next</button>
+                            <button
+                                onClick={(event) => canGoNext && handlerPagination(1, event)}
+                                className={style.paginationButton}
+                                disabled={!canGoNext}
+                            >
+                                Next
+                            </button>
                         </div>
                         <div className={style.divCountries}>
                             {
@@ -69,7 +78,7 @@ export default function Countries() {
                                     />
                                 ))
                             }
-                            </div>
+                        </div>
                     </div>
                 )
             }

@@ -5,7 +5,7 @@ const initialState = {
     loadingHome: true,
     currentPage: 1,
     countryDetails: [],
-    loadingDetails: true,
+    loadingDetails: false,
     loadingActivities: true,
     activities: []
 }
@@ -32,8 +32,8 @@ export default function rootReducer(state = initialState, {type, payload}) {
                 ...state,
                 countryDetails: payload,
                 loadingDetails: false,
-                loadingHome: true,
-                loadingActivities: true
+                loadingHome: false,
+                loadingActivities: false
             }
         case 'ORDER':
             return {

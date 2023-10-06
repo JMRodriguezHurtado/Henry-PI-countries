@@ -9,10 +9,9 @@ function Country(props) {
             <div className={style.countryCard}>
                 <img className={style.background} src={image} alt="" />
                 <div className={style.cardInfo}>
-                    <div className={style.imageDiv}>
+                    <div>
                         <div>
-                            <img src={image} alt="" />
-                            <NavLink to={`/detail/${id}`}>+INFO</NavLink>
+                            <NavLink to={`/detail/${id}`}>More</NavLink>
                         </div>
                     </div>
                     <div className={style.countryDetails}>
