@@ -56,7 +56,8 @@ export default function Form() {
                 difficulty:'',
                 duration:'',
                 season:'',
-                Countries:[]
+                Countries:[],
+                rating
             })
         }else{
             alert('You must complete the form correctly')
@@ -145,7 +146,7 @@ export default function Form() {
         event.currentTarget.classList.toggle('difficultyActive')
         
     }
-    const handleRatingChange = (event) => {
+    const handleSelectRating = (event) => {
         const ratingOptions = document.querySelector("#ratingOptions")
 
         if(!rating) {
@@ -216,8 +217,22 @@ export default function Form() {
     }
 
     const handleClickOutside = () => {
-
+        const ratingActive = document.querySelector('.rating')
         const difficultyActive = document.querySelector('.difficulty')
+
+        if(rating){
+            setRating(false)
+
+            setTimeout(() => {
+                ratingOptions.classList.remove('hideRating');
+                ratingOptions.classList.add('hiddenOptions')
+                
+            }, 500);
+            
+            ratingOptions.classList.remove('showRating')
+            ratingOptions.classList.add('hideRating')
+            ratingActive.classList.value.includes('ratingActive') && ratingActive.classList.toggle('ratingActive')
+        }
 
         if(difficulty){
             setDifficulty(false)
@@ -268,8 +283,6 @@ export default function Form() {
         }
 
     }
-
-
 
     const handleDeleteCountry = (deletedCountry) => {
         const udpdatedCountries = [...form.Countries].filter(country => country !== deletedCountry)
@@ -324,28 +337,28 @@ export default function Form() {
                     </div>
                 </div>
                 <div className='selectBox'>
-                    {errors?.difficulty && <span>{errors.rating}</span>}
-                    <div onClick={handleSelectDifficulty} className='difficulty'>
+                    {errors?.difficulty && <span>{errors.difficulty}</span>}
+                    <div onClick={handleSelectRating} className='rating'>
                         <div>
                             <p className='title'>Rating</p>
                         </div>
                     </div>
-                    <div id='difficulty' name='difficulty' value={form.rating} onChange={handleChange} className={style.options}>{form.difficulty}</div>
-                    <div className='hiddenOptions' id="difficultyOptions">
+                    <div id='rating' name='rating' value={form.rating} onChange={handleChange} className={style.options}>{form.rating}</div>
+                    <div className='hiddenOptions' id="ratingOptions">
                         <div className="option">
-                            <p onClick={handleDifficulty}>1</p>
+                            <p onClick={handleRating}>1</p>
                         </div>
                         <div className="option">
-                            <p onClick={handleDifficulty}>2</p>
+                            <p onClick={handleRating}>2</p>
                         </div>
                         <div className="option">
-                            <p onClick={handleDifficulty}>3</p>
+                            <p onClick={handleRating}>3</p>
                         </div>
                         <div className="option">
-                            <p onClick={handleDifficulty}>4</p>
+                            <p onClick={handleRating}>4</p>
                         </div>
                         <div className="option">
-                            <p onClick={handleDifficulty}>5</p>
+                            <p onClick={handleRating}>5</p>
                         </div>
                     </div>
                 </div>
