@@ -6,9 +6,11 @@ import NavBar from '../../components/navBarComponents/navBar'
 import style from './home.module.css'
 
 
+
 export default function Home() {
 
     return(
+       
         <div className={style.homePage}>
             <div className={style.homeAside}>
                 <NavBar/>
@@ -17,5 +19,6 @@ export default function Home() {
             </div>
             <Countries/>
         </div>
+    
     )
 }

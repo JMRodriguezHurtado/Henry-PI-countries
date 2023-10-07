@@ -3,7 +3,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from '../navBarComponents/navBar';
+import NavBar from '../../components/navBarComponents/navBar';
 import { createActivity, getAllCountries } from '../../redux/action';
 import { validateForm, validateSubmit } from './Validation/validations';
 import create from '../../assets/create.gif'
@@ -18,7 +18,7 @@ export default function Form() {
     const activities = useSelector(state => state.activities)
 
     const [form, setForm] = useState({
-        name:'',
+        name: '',
         difficulty:'',
         duration:'',
         season:'',
@@ -42,12 +42,14 @@ export default function Form() {
         event.preventDefault()
         console.log(activities)
         console.log(form.Countries)
+        console.log(form.name)
 
         if(!validateSubmit(form)){
             setForm({
                 ...form,
                 difficulty: Number(form.difficulty),
-                duration: Number(form.duration)
+                duration: Number(form.duration),
+                name: String(form.name)
             })
             dispatch(createActivity(form))
 
@@ -56,8 +58,7 @@ export default function Form() {
                 difficulty:'',
                 duration:'',
                 season:'',
-                Countries:[],
-                rating
+                Countries:[]
             })
         }else{
             alert('You must complete the form correctly')
@@ -66,18 +67,18 @@ export default function Form() {
     }
     
 
-  
+    // LLAMADO PARA RENDERIZAR LOS PAISES
     const countries = useSelector(state => state.allCountries)
 
-
-
+    //////// MANEJADORES PARA EL CHANGE DE LOS INPUTS
+    console.log(form.name)
     const handleChange = (event) => {
 
         setForm({
             ...form,
             [event.target.name]: event.target.value
-        })
-    }
+        }, console.log(event.target.name))
+    };
 
     const handleDifficulty = (event) => {
 
@@ -111,14 +112,10 @@ export default function Form() {
             })
         }
     }
-    const handleRating = (event) => {
-        setForm({
-          ...form,
-          rating: event.target.value
-        })
-      }
-    
-    const [rating, setRating] = useState(false)
+
+
+    //////// FUNCIONES PARA LOS SELECTS (CSS)
+
     const [difficulty, setDifficulty] = useState(false)
     const [season, setSeason] = useState(false)
     const [country, setCountry] = useState(false)
@@ -144,29 +141,6 @@ export default function Form() {
             difficultyOptions.classList.add('hideDifficulty')
         }
         event.currentTarget.classList.toggle('difficultyActive')
-        
-    }
-    const handleSelectRating = (event) => {
-        const ratingOptions = document.querySelector("#ratingOptions")
-
-        if(!rating) {
-            setRating(true)
-            ratingOptions.classList.remove('hiddenOptions');            
-            ratingOptions.classList.add('showRating');           
-
-        } else{
-            setRating(false)
-
-            setTimeout(() => {
-                ratingOptions.classList.remove('hideRating');
-                ratingOptions.classList.add('hiddenOptions')
-                
-            }, 500);
-            
-            ratingOptions.classList.remove('showRating')
-            ratingOptions.classList.add('hideRating')
-        }
-        event.currentTarget.classList.toggle('ratingActive')
         
     }
 
@@ -217,22 +191,8 @@ export default function Form() {
     }
 
     const handleClickOutside = () => {
-        const ratingActive = document.querySelector('.rating')
+
         const difficultyActive = document.querySelector('.difficulty')
-
-        if(rating){
-            setRating(false)
-
-            setTimeout(() => {
-                ratingOptions.classList.remove('hideRating');
-                ratingOptions.classList.add('hiddenOptions')
-                
-            }, 500);
-            
-            ratingOptions.classList.remove('showRating')
-            ratingOptions.classList.add('hideRating')
-            ratingActive.classList.value.includes('ratingActive') && ratingActive.classList.toggle('ratingActive')
-        }
 
         if(difficulty){
             setDifficulty(false)
@@ -284,6 +244,8 @@ export default function Form() {
 
     }
 
+    // ELIMINAR UN PAIS COMO OPCION
+
     const handleDeleteCountry = (deletedCountry) => {
         const udpdatedCountries = [...form.Countries].filter(country => country !== deletedCountry)
 
@@ -333,32 +295,6 @@ export default function Form() {
                         </div>
                         <div className="option">
                             <p onClick={handleDifficulty}>5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className='selectBox'>
-                    {errors?.difficulty && <span>{errors.difficulty}</span>}
-                    <div onClick={handleSelectRating} className='rating'>
-                        <div>
-                            <p className='title'>Rating</p>
-                        </div>
-                    </div>
-                    <div id='rating' name='rating' value={form.rating} onChange={handleChange} className={style.options}>{form.rating}</div>
-                    <div className='hiddenOptions' id="ratingOptions">
-                        <div className="option">
-                            <p onClick={handleRating}>1</p>
-                        </div>
-                        <div className="option">
-                            <p onClick={handleRating}>2</p>
-                        </div>
-                        <div className="option">
-                            <p onClick={handleRating}>3</p>
-                        </div>
-                        <div className="option">
-                            <p onClick={handleRating}>4</p>
-                        </div>
-                        <div className="option">
-                            <p onClick={handleRating}>5</p>
                         </div>
                     </div>
                 </div>
@@ -424,7 +360,7 @@ export default function Form() {
                     <input  type="text" name="duration" id="duration" value={form.duration} onChange={handleChange}/>                    
                 </div>
                 <button type='submit' className={style.button}>CREATE</button>
-            </form>
+            </form> 
         </div>
     )
 }

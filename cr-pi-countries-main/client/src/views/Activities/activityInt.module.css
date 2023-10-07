@@ -1,11 +1,8 @@
 .activitiesPage{
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  background-image: url('../../assets/activitiesBackground.jpg');
-  background-attachment: fixed;
-  background-position: center center;
+  background-color: #f0f1f1;
+  z-index: -5;
 }
 
 .nav{
@@ -16,24 +13,25 @@
 }
 
 .activitiesDiv{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  flex-direction:row;
   align-items: center;
   padding: 20px 0;
   gap: 20px;
-  width: 80%;
+  width: 120%;
   height: 65%;
   overflow: auto;
   background-color: #ffffff9d;
   position: relative;
+  z-index: 2;
 }
 
 .activitiesDiv::-webkit-scrollbar{
-  width: 2px;
+  width: 10px;
 }
 
 .activitiesDiv::-webkit-scrollbar-thumb {
-  background-color: #000000;
+  background-color: #dad2d2d1;
   padding: 2px;
 }
 
@@ -42,13 +40,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  width: 100%;
   background-color: #83858899;
 }
 
 .activityDiv h2{
   margin: 0;
-  position: absolute;
+  position: flex;
   right: 30px;
   top: 20px;
 
@@ -83,7 +81,7 @@
 }
 
 .deleteBin{
-  position: absolute;
+  position: grid;
   right: 35px;
   top: 40px;
   width: 40px;

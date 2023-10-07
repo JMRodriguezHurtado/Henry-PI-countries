@@ -5,7 +5,8 @@ const postActivity = async(name, difficulty, duration, season, Countries, id) =>
 
     try {
 
-        if(!name || !difficulty || !duration || !season || !Countries || !rating){
+        if(!name || !difficulty || !duration || !season || !Countries){
+            console.log("Missing data:", { name, difficulty, duration, season, Countries });
             throw new Error('Some data is missing')
         }
 
@@ -21,12 +22,11 @@ const postActivity = async(name, difficulty, duration, season, Countries, id) =>
             name,
             difficulty,
             duration,
-            season,
-            rating
+            season
         })
 
-       /*  await newActivity.addCountries(assignedCountries)
- */
+       await newActivity.addCountries(assignedCountries)
+ 
         return newActivity
         
     } catch (error) {

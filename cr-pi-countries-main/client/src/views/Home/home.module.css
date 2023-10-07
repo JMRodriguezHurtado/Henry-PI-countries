@@ -1,9 +1,19 @@
-.homePage{
+body {
+    background-image: url('../../utils/imagenes/Wmap.jpg'); 
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0; 
+    padding: 0; 
+    overflow-y: auto;
+}
+.homePage {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-start;
     height: 100vh;
+    position: relative; 
+    z-index: 1; 
 }
 
 .homeAside{

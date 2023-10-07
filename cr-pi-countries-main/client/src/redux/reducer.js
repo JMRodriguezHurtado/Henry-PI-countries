@@ -49,7 +49,7 @@ export default function rootReducer(state = initialState, {type, payload}) {
 
             return {
                 ...state,
-                renderedCountries: state.allCountries.filter(country => country.continent === payload ),
+                renderedCountries: state.allCountries.filter(country => country.continents === payload ),
                 currentPage: 1
             }
         case 'ACTIVITY' :

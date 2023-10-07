@@ -90,7 +90,7 @@ export default function Filters() {
                         Africa
                         {filters.region === 'Africa' && <span className={style.activeFilter}></span>}
                     </p>
-                    <p onClick={handleRegion} value='Americas'>
+                    <p onClick={handleRegion} value={'North America' || 'South America'}>
                         Americas
                         {filters.region === 'Americas' && <span className={style.activeFilter}></span>}
                     </p>

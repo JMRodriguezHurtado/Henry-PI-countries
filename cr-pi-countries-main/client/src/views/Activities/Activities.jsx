@@ -42,10 +42,9 @@ export default function Activity() {
                                 <div className={style.activityDiv} key={activity.id}>
                                     <h1>{activity.name}</h1>
                                     <div className={style.activityInfo}>
-                                        <p>Difficulty: <b>{activity.difficulty} (max 5)</b></p>
+                                        <p>Difficulty: <b>{activity.difficulty}</b></p>
                                         <p>Duration: <b>{activity.duration}hs</b></p>
                                         <p>Recommended season: <b>{activity.season}</b></p>
-                                        <p>Rating: <b>{activity.rating}</b></p>
                                         <div className={style.activityCountries}>
                                             <p>Countries:</p>
                                             <p className={style.countries}>

@@ -22,20 +22,12 @@ module.exports = (sequelize) => {
         }
       },
       season: {
-        type: DataTypes.ENUM('Primavera', 'Verano', 'Otoño', 'Invierno'),
+        type: DataTypes.ENUM('Autumn', 'Winter', 'Spring', 'Summer'),
         allowNull: false,
       },
       duration: {
         type: DataTypes.FLOAT,
         allowNull: true,
-      },
-      rating: {
-        type: DataTypes.DECIMAL, 
-        allowNull: false,
-        validate: {
-          min: 1,
-          max: 5,
-        },
-      },
+      }
   })
 };

@@ -22,11 +22,6 @@ const getCountries = async () => {
         capital: countryData.capital ? countryData.capital[0] : 'null',
       };
 
-      // Push countryInfo to the dbCountries array (if needed).
-
-      // You can consider moving the database operations outside the loop
-      // to improve performance, especially if there are many countries.
-
       await Country.findOrCreate({
          where: {
            name: countryInfo.name,
