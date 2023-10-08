@@ -68,17 +68,16 @@ export const createActivity = (activity) => {
 
             const {name, difficulty, season, Countries, duration} = activity
 
-            const response = await axios.post('http://localhost:3001/activities', {name, difficulty, season, Countries, duration})
-            const dbActivity = response.data
+            const response = await axios.post('http://localhost:3001/activities/:id', {name, difficulty, season, Countries, duration})
+            
 
             alert('Congratulations, your activity has been created')
             dispatch({
                 type: 'CREATE_ACTIVITY',
-                payload: dbActivity
+                payload: response
             })
             
         } catch (error) {
-            console.log("Missing data:", { name, difficulty, duration, season, Countries });
             alert('Some data is missing')
         }
     }

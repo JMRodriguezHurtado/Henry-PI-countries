@@ -16,8 +16,6 @@ const postActivity = async(name, difficulty, duration, season, Countries, id) =>
             }
         })
 
-        console.log(id, typeof id)
-
         const newActivity = await Activity.create({
             name,
             difficulty,
