@@ -25,7 +25,7 @@
 .searchBar input{
     font-family: 'Courier New';
     border: none;
-    border-radius: 0;
+    border-radius: 15%;
     padding: 2px 8px;
     height: 23px;
     font-size: 15px;

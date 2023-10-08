@@ -4,7 +4,7 @@ body {
     background-attachment: fixed;
     margin: 0; 
     padding: 0; 
-    overflow-y: auto;
+    overflow-y:scroll;
 }
 .homePage {
     display: flex;
@@ -24,9 +24,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #838588;
+    background-color: rgba(230, 230, 231, 0.5);
     z-index: 1000;
-    width: 15%;
+    width: 20%;
     height: 100vh;
     gap: 10px;
 }
