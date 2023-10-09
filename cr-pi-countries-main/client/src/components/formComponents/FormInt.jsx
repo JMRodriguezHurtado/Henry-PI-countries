@@ -49,7 +49,7 @@ export default function Form() {
                 ...form,
                 difficulty: Number(form.difficulty),
                 duration: Number(form.duration),
-                name: String(form.name)
+    
             })
             dispatch(createActivity(form))
 
@@ -58,6 +58,8 @@ export default function Form() {
                 difficulty:'',
                 duration:'',
                 season:'',
+                rating:'',
+                image:'',
                 Countries:[]
             })
         }else{
@@ -77,7 +79,7 @@ export default function Form() {
         setForm({
             ...form,
             [event.target.name]: event.target.value
-        }, console.log(event.target.name))
+        })
     };
 
     const handleDifficulty = (event) => {
@@ -85,6 +87,14 @@ export default function Form() {
         setForm({
             ...form,
             difficulty: event.target.innerText
+        })
+
+    }
+    const handleRating = (event) => {
+
+        setForm({
+            ...form,
+            rating: event.target.innerText
         })
 
     }
@@ -116,6 +126,7 @@ export default function Form() {
 
     //////// FUNCIONES PARA LOS SELECTS (CSS)
 
+    const [rating, setRating] = useState(false)
     const [difficulty, setDifficulty] = useState(false)
     const [season, setSeason] = useState(false)
     const [country, setCountry] = useState(false)
@@ -141,6 +152,30 @@ export default function Form() {
             difficultyOptions.classList.add('hideDifficulty')
         }
         event.currentTarget.classList.toggle('difficultyActive')
+        
+    }
+
+    const handleSelectRating = (event) => {
+        const ratingOptions = document.querySelector("#ratingOptions")
+
+        if(!rating) {
+            setRating(true)
+            ratingOptions.classList.remove('hiddenOptions');            
+            ratingOptions.classList.add('showRating');           
+
+        } else{
+            setRating(false)
+
+            setTimeout(() => {
+                ratingOptions.classList.remove('hideRating');
+                ratingOptions.classList.add('hiddenOptions')
+                
+            }, 500);
+            
+            ratingOptions.classList.remove('showRating')
+            ratingOptions.classList.add('hideRating')
+        }
+        event.currentTarget.classList.toggle('ratingActive')
         
     }
 
@@ -206,6 +241,23 @@ export default function Form() {
             difficultyOptions.classList.remove('showDifficulty')
             difficultyOptions.classList.add('hideDifficulty')
             difficultyActive.classList.value.includes('difficultyActive') && difficultyActive.classList.toggle('difficultyActive')
+            
+        }
+
+        const ratingActive = document.querySelector('.rating')
+
+        if(rating){
+            setRating(false)
+
+            setTimeout(() => {
+                ratingOptions.classList.remove('hideRating');
+                ratingOptions.classList.add('hiddenOptions')
+                
+            }, 500);
+            
+            ratingOptions.classList.remove('showRating')
+            ratingOptions.classList.add('hideRating')
+            ratingActive.classList.value.includes('ratingActive') && ratingActive.classList.toggle('ratingActive')
             
         }
 
@@ -299,6 +351,32 @@ export default function Form() {
                     </div>
                 </div>
                 <div className='selectBox'>
+                    {errors?.rating && <span>{errors.rating}</span>}
+                    <div onClick={handleSelectRating} className='rating'>
+                        <div>
+                            <p className='title'>Rating</p>
+                        </div>
+                    </div>
+                    <div id='rating' name='rating' value={form.rating} onChange={handleChange} className={style.options}>{form.rating}</div>
+                    <div className='hiddenOptions' id="ratingOptions">
+                        <div className="option">
+                            <p onClick={handleRating}>1</p>
+                        </div>
+                        <div className="option">
+                            <p onClick={handleRating}>2</p>
+                        </div>
+                        <div className="option">
+                            <p onClick={handleRating}>3</p>
+                        </div>
+                        <div className="option">
+                            <p onClick={handleRating}>4</p>
+                        </div>
+                        <div className="option">
+                            <p onClick={handleRating}>5</p>
+                        </div>
+                    </div>
+                </div>
+                <div className='selectBox'>
                     {errors?.season && <span>{errors.season}</span>}
                     <div onClick={handleSelectSeason} className='season'>
                         <div>
@@ -358,6 +436,13 @@ export default function Form() {
                         {errors?.duration && <p className={style.error}>{errors.duration}</p>}
                     </div>
                     <input  type="text" name="duration" id="duration" value={form.duration} onChange={handleChange}/>                    
+                </div>
+                <div className='selectBox'>
+                    <div className={style.label}>
+                        <label>Image:</label>
+                        {errors?.image && <p className={style.error}>{errors.image}</p>}
+                    </div>
+                    <input type="text" name="image" id="image" value={form.image} onChange={handleChange}/>
                 </div>
                 <button type='submit' className={style.button}>CREATE</button>
             </form> 

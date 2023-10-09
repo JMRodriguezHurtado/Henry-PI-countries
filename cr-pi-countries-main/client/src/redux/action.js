@@ -66,9 +66,9 @@ export const createActivity = (activity) => {
 
         try {
 
-            const {name, difficulty, season, Countries, duration} = activity
+            const {name, difficulty, season, Countries, duration, rating, image} = activity
 
-            const response = await axios.post('http://localhost:3001/activities/:id', {name, difficulty, season, Countries, duration})
+            const response = await axios.post('http://localhost:3001/activities/:id', {name, difficulty, season, Countries, duration, rating, image})
             
 
             alert('Congratulations, your activity has been created')

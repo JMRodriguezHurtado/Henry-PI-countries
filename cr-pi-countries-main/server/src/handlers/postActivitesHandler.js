@@ -7,9 +7,9 @@ const postActivityHandler = async(req, res) => {
 
         const {id} = req.params
 
-        const {name, difficulty, duration, season, Countries} = req.body
+        const {name, difficulty, duration, season, rating, image, Countries} = req.body
 
-        const activity = await postActivity(name, difficulty, duration, season, Countries, id)
+        const activity = await postActivity(name, difficulty, duration, season, rating, image, Countries, id)
 
         res.status(200).json(activity)
         

@@ -91,3 +91,11 @@
 .deleteBin:hover {
   transform: rotate(10deg) scale(1.05);
 }
+
+.activityImage{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}

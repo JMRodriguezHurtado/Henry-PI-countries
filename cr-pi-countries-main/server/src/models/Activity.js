@@ -28,6 +28,17 @@ module.exports = (sequelize) => {
       duration: {
         type: DataTypes.FLOAT,
         allowNull: true,
+      },
+      rating: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validator: {
+          min: 1,
+          max: 5
+        }},
+        image: {
+          type: DataTypes.STRING, 
+          allowNull: true,
       }
   })
 };

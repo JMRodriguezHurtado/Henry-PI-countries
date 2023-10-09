@@ -45,6 +45,7 @@ export default function Activity() {
                                         <p>Difficulty: <b>{activity.difficulty}</b></p>
                                         <p>Duration: <b>{activity.duration}hs</b></p>
                                         <p>Recommended season: <b>{activity.season}</b></p>
+                                        <p>Rating: <b>{activity.rating}</b></p>
                                         <div className={style.activityCountries}>
                                             <p>Countries:</p>
                                             <p className={style.countries}>
@@ -57,6 +58,8 @@ export default function Activity() {
                                                 }
                                             </p>
                                         </div>
+                                        <p>Picture:</p>
+                                        <img src={activity.image} alt ={`${activity.name}`} className={style.activityImage}/>
                                     </div>
                                     <img onClick={() => handleDelete(activity.id)} className={style.deleteBin} src={bin} alt="" />
                                 </div>

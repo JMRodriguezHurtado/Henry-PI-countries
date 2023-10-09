@@ -1,12 +1,12 @@
 const { Activity, Country } = require("../db")
 
 
-const postActivity = async(name, difficulty, duration, season, Countries, id) => {
+const postActivity = async(name, difficulty, duration, season, rating, image, Countries, id) => {
 
     try {
 
-        if(!name || !difficulty || !duration || !season || !Countries){
-            console.log("Missing data:", { name, difficulty, duration, season, Countries });
+        if(!name || !difficulty || !duration || !season || !rating || !image || !Countries ){
+            console.log("Missing data:", { name, difficulty, duration, season, rating, image, Countries });
             throw new Error('Some data is missing')
         }
 
@@ -20,7 +20,9 @@ const postActivity = async(name, difficulty, duration, season, Countries, id) =>
             name,
             difficulty,
             duration,
-            season
+            season,
+            rating,
+            image
         })
 
        await newActivity.addCountries(assignedCountries)
