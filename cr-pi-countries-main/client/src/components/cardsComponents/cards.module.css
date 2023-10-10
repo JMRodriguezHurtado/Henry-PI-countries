@@ -7,6 +7,8 @@
   background-color: rgba(235, 243, 247, 0.5);
   position: relative;
   z-index: 1;
+  height: 400px;
+  overflow-y: auto;
 }
 
 .countriesDiv{
@@ -15,7 +17,9 @@
   align-items: center;
   margin-top: 150px;
   gap: 25px;
-  width: 100%;
+  width: 120%;
+  height: 400px;
+  overflow-y: auto;
 }
 
 .countriesSection h1{
