@@ -1,23 +1,27 @@
-const { expect } = require('chai');
-const session = require('supertest-session');
-const app = require('../../src/app.js');
-const { Country, conn } = require('../../src/db.js');
+const request = require('supertest');
+const express = require('express');
+const router = require('../src/routes/index'); 
+const app = express();
 
-const agent = session(app);
-const country = {
-  name: 'Argentina',
-};
+app.use(express.json());
+app.use('/', router);
 
-describe('Country routes', () => {
-  before(() => conn.authenticate()
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  }));
-  beforeEach(() => Country.sync({ force: true })
-    .then(() => Country.create(pokemon)));
-  describe('GET /countries', () => {
-    it('should get 200', () =>
-      agent.get('/countries').expect(200)
-    );
+describe('API Routes', () => {
+  it('should get a list of countries', async () => {
+    const response = await request(app).get('/countries');
+    expect(response.status).toBe(200);
+    
   });
-});
+
+  it('should get a country by ID', async () => {
+    const response = await request(app).get('/countries/ARG'); 
+    expect(response.status).toBe(200);
+    
+  });
+
+  it('should get a country by name', async () => {
+    const response = await request(app).get('/country?name=Argentina'); 
+    expect(response.status).toBe(200);
+    
+  });
+})
