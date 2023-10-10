@@ -7,8 +7,6 @@
   background-color: rgba(235, 243, 247, 0.5);
   position: relative;
   z-index: 1;
-  height: 400px;
-  overflow-y: auto;
 }
 
 .countriesDiv{
